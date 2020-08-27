@@ -32,15 +32,23 @@ namespace Quan_ly_vat_tu.Controllers
         {
             if (id == 0)
             {
+                List<Kho> list = new List<Kho>();
+                list = (from kho in _context.Kho select kho).ToList();
+                //list.Insert(0, new Kho {  });
+                ViewBag.message = list;
                 return View(new VatTu());
             }
             else
             {
-
+                List<Kho> list = new List<Kho>();
+                list = (from kho in _context.Kho select kho).ToList();
+                //list.Insert(0, new Kho { maKho = 0, tenKho = "" });
+                ViewBag.message = list;
                 return View(_context.VatTu.Find(id));
             }
         }
 
+      
        
 
 
