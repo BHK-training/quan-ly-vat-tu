@@ -19,34 +19,26 @@ namespace Quan_ly_vat_tu.Controllers
         {
             _context = context;
         }
-        
-       
+
+
         // GET: VatTu
         public async Task<IActionResult> Index()
-        {
+        { 
             return View(await _context.VatTu.ToListAsync());
         }
-
-       
-
-       
 
         // GET: VatTu/Create
         public IActionResult AddOrEdit(int id = 0)
         {
             if (id == 0)
             {
-                ViewBag.DS = _context.VatTu.ToList();
                 return View(new VatTu());
             }
             else
             {
-                ViewBag.DS = _context.VatTu.ToList();
+
                 return View(_context.VatTu.Find(id));
             }
-          
-
-
         }
 
        

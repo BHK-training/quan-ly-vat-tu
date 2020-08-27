@@ -2,7 +2,7 @@
 
 namespace Quan_ly_vat_tu.Migrations.Application
 {
-    public partial class InitialVatTu : Migration
+    public partial class initial_kho_vattu : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,24 +29,23 @@ namespace Quan_ly_vat_tu.Migrations.Application
                     tenVatTu = table.Column<string>(type: "nvarchar(100)", nullable: false),
                     soLuong = table.Column<int>(type: "int", nullable: false),
                     gia = table.Column<double>(type: "float", nullable: false),
-                    maKho = table.Column<int>(nullable: false),
-                    khomaKho = table.Column<int>(nullable: true)
+                    maKho = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_VatTu", x => x.maVatTu);
                     table.ForeignKey(
-                        name: "FK_VatTu_Kho_khomaKho",
-                        column: x => x.khomaKho,
+                        name: "FK_VatTu_Kho_maKho",
+                        column: x => x.maKho,
                         principalTable: "Kho",
                         principalColumn: "maKho",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_VatTu_khomaKho",
+                name: "IX_VatTu_maKho",
                 table: "VatTu",
-                column: "khomaKho");
+                column: "maKho");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
