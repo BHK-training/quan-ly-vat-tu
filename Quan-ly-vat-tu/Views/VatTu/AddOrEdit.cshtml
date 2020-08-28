@@ -1,8 +1,8 @@
 ﻿@model Quan_ly_vat_tu.Models.VatTu
-
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+   
 }
 
 <h4>Vật Tư Form</h4>
@@ -28,9 +28,10 @@
                 <span asp-validation-for="gia" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="maKho" class="control-label"></label>
-              
-                <input asp-for="maKho" class="form-control" min="1"/>
+                <label class="control-label">Tên kho</label>
+
+                <select asp-for="maKho" class="form-control" asp-items='new SelectList(ViewBag.message, "maKho", "tenKho")'>
+                </select>
                 <span asp-validation-for="maKho" class="text-danger"></span>
             </div>
             <div class="form-row">
