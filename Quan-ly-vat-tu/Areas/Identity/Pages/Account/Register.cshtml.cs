@@ -60,6 +60,8 @@ namespace Quan_ly_vat_tu.Areas.Identity.Pages.Account
             [Display(Name = "LastName")]
             public string LastName { get; set; }
 
+  
+
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]

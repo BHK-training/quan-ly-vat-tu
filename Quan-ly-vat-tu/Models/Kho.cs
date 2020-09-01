@@ -22,6 +22,6 @@ namespace Quan_ly_vat_tu.Models
         [Column(TypeName = "nvarchar(100)")]
         [DisplayName("Địa chỉ")]
         public string diaChi { get; set; }
-        public ICollection<VatTu> nVatTu { get; set; }
+        public List<VatTu> nVatTu { get; set; }
     }   
 }

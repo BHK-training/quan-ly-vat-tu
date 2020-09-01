@@ -20,8 +20,6 @@ namespace Quan_ly_vat_tu.Controllers
             _context = context;
         }
 
-    
-
         // GET: Kho
         public async Task<IActionResult> Index()
         {
@@ -29,114 +27,118 @@ namespace Quan_ly_vat_tu.Controllers
         }
 
         // GET: Kho/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var kho = await _context.Kho
-        //        .FirstOrDefaultAsync(m => m.maKho == id);
-        //    if (kho == null)
-        //    {
-        //        return NotFound();
-        //    }
+            var kho = await _context.Kho
+                .FirstOrDefaultAsync(m => m.maKho == id);
+            if (kho == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(kho);
-        //}
+            return View(kho);
+        }
 
         // GET: Kho/Create
-        public IActionResult AddOrEdit(int id = 0)
+        public IActionResult Create()
         {
-
-            if (id == 0)
-            {
-                return View(new Kho());
-            }
-            else
-            {
-                return View(_context.Kho.Find(id));
-            }
+            return View();
         }
-       
 
         // POST: Kho/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddOrEdit([Bind("maKho,tenKho,diaChi")] Kho kho)
+        public async Task<IActionResult> Create([Bind("maKho,tenKho,diaChi")] Kho kho)
         {
             if (ModelState.IsValid)
             {
-                if (kho.maKho == 0)
-                {
-                    _context.Add(kho);
-                }
-                else
-                {
-                    _context.Update(kho);
-                }
+                _context.Add(kho);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(kho);
         }
 
-        //// GET: Kho/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: Kho/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-        //    var kho = await _context.Kho.FindAsync(id);
-        //    if (kho == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(kho);
-        //}
+            var kho = await _context.Kho.FindAsync(id);
+            if (kho == null)
+            {
+                return NotFound();
+            }
+            return View(kho);
+        }
 
         // POST: Kho/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("maKho,tenKho,diaChi")] Kho kho)
-        //{
-        //    if (id != kho.maKho)
-        //    {
-        //        return NotFound();
-        //    }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("maKho,tenKho,diaChi")] Kho kho)
+        {
+            if (id != kho.maKho)
+            {
+                return NotFound();
+            }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(kho);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!KhoExists(kho.maKho))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(kho);
-        //}
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(kho);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!KhoExists(kho.maKho))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(kho);
+        }
 
         // GET: Kho/Delete/5
         public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var kho = await _context.Kho
+                .FirstOrDefaultAsync(m => m.maKho == id);
+            if (kho == null)
+            {
+                return NotFound();
+            }
+
+            return View(kho);
+        }
+
+        // POST: Kho/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var kho = await _context.Kho.FindAsync(id);
             _context.Kho.Remove(kho);
@@ -144,20 +146,9 @@ namespace Quan_ly_vat_tu.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //// POST: Kho/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var kho = await _context.Kho.FindAsync(id);
-        //    _context.Kho.Remove(kho);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        //private bool KhoExists(int id)
-        //{
-        //    return _context.Kho.Any(e => e.maKho == id);
-        //}
+        private bool KhoExists(int id)
+        {
+            return _context.Kho.Any(e => e.maKho == id);
+        }
     }
 }

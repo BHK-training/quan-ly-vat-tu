@@ -27,26 +27,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tenVatTu)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.soLuong)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.gia)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.maKho)
-                </td>
-                <td>
-                    <a asp-action="AddOrEdit" asp-route-id="@item.maVatTu" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.maVatTu" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i> Delete</a>
-                </td>
-            </tr>
-        }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tenVatTu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.soLuong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.maKho)
+            </td>
+            <td>
+                <a asp-action="AddOrEdit" asp-route-id="@item.maVatTu"class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a>
+                <a asp-action="Delete" asp-route-id="@item.maVatTu"class="btn btn-danger" onclick="return confirm('Are you sure to delete?')"><i class="fa fa-trash"></i> Delete</a>
+            </td>
+        </tr>
+}
     </tbody>
 </table>

@@ -24,8 +24,6 @@ namespace Quan_ly_vat_tu.Models
         public float gia { get; set; }
         [System.ComponentModel.DisplayName("Mã kho")]
         public int maKho { get; set; }
-
-        [ForeignKey("maKho")]
-        public virtual Kho Kho { get; set; }
+        public Kho kho { get; set; }
     }
 }
